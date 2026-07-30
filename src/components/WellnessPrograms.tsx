@@ -1,43 +1,44 @@
-import { motion } from 'framer-motion';
-import { ArrowUpRight } from 'lucide-react';
-import Reveal from './Reveal';
-import image3 from '../assets/massage.png'
-import yoga from '../assets/yoga.png'
-import wellbeing from '../assets/wellbeing.avif'
-import lemonade from '../assets/lemonade.avif'
-import stress from '../assets/stress.avif'
-import herbs from '../assets/herbal.avif'
+import { motion } from "framer-motion";
+import { ArrowUpRight } from "lucide-react";
+import Reveal from "./Reveal";
+
+import massage from "../assets/massage.png";
+import yoga from "../assets/yoga.png";
+import wellbeing from "../assets/wellbeing.avif";
+import lemonade from "../assets/lemonade.avif";
+import stress from "../assets/stress.avif";
+import herbs from "../assets/herbal.avif";
 
 const PROGRAMS = [
   {
-    title: 'Functional Nutrition',
-    tag: 'Nutrition',
-    image:wellbeing,
+    title: "Functional Nutrition",
+    tag: "Nutrition",
+    image: wellbeing,
   },
   {
-    title: 'Yoga & Breathwork',
-    tag: 'Movement',
-    image:yoga,
+    title: "Yoga & Breathwork",
+    tag: "Movement",
+    image: yoga,
   },
   {
-    title: 'Stress Recovery',
-    tag: 'Mind',
-    image:stress,
+    title: "Stress Recovery",
+    tag: "Mind",
+    image: stress,
   },
   {
-    title: 'Therapeutic Massage',
-    tag: 'Body',
-    image:image3,
+    title: "Therapeutic Massage",
+    tag: "Body",
+    image: massage,
   },
   {
-    title: 'Herbal Medicine',
-    tag: 'Natural',
-    image:herbs,
+    title: "Herbal Medicine",
+    tag: "Natural",
+    image: herbs,
   },
   {
-    title: 'Detox Programs',
-    tag: 'Cleanse',
-    image:lemonade,
+    title: "Detox Programs",
+    tag: "Cleanse",
+    image: lemonade,
   },
 ];
 
@@ -45,64 +46,129 @@ export default function WellnessPrograms() {
   return (
     <section
       id="programs"
-      className="relative w-full bg-[#0B0B0B] px-5 py-24 sm:px-8 sm:py-32 md:px-16 lg:px-20 lg:py-40"
+      className="relative overflow-hidden px-5 py-24 sm:px-8 sm:py-32 md:px-16 lg:px-20 lg:py-40"
     >
-      <div className="mx-auto max-w-7xl">
-        <div className="flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-end">
+      {/* Background */}
+
+      <div className="absolute inset-0">
+
+        <div className="absolute inset-0 bg-gradient-to-b from-[#11151F] via-[#18213A] to-[#10141E]" />
+
+        <div className="absolute -left-52 top-0 h-[650px] w-[650px] rounded-full bg-blue-500/15 blur-[200px]" />
+
+        <div className="absolute right-[-180px] top-40 h-[520px] w-[520px] rounded-full bg-violet-400/10 blur-[180px]" />
+
+        <div className="absolute bottom-[-150px] left-1/2 h-[450px] w-[450px] -translate-x-1/2 rounded-full bg-cyan-300/10 blur-[180px]" />
+
+        <div className="absolute inset-0 bg-black/20" />
+
+      </div>
+
+      <div className="relative z-10 mx-auto max-w-7xl">
+
+        <div className="flex flex-col items-start justify-between gap-8 lg:flex-row lg:items-end">
+
           <div>
-            <span className="text-sm font-light uppercase tracking-[0.25em] text-sage">
+
+            <span className="text-sm font-light uppercase tracking-[0.3em] text-sage">
               Wellness Programs
             </span>
-            <h2 className="mt-5 max-w-2xl text-3xl font-light text-white sm:text-4xl md:text-5xl">
-              Programs designed around your whole being
+
+            <h2 className="mt-6 max-w-3xl text-4xl font-light leading-tight text-white sm:text-5xl lg:text-6xl">
+              Programs designed for
+              <br />
+              every part of your wellbeing.
             </h2>
+
           </div>
-          <p className="max-w-sm text-sm font-light leading-relaxed text-white/55">
-            Each program blends ancient wisdom with modern science to restore
-            balance at every level — body, mind, and spirit.
+
+          <p className="max-w-md text-base font-light leading-8 text-white/65">
+            Every wellness experience is thoughtfully designed to restore
+            balance through movement, nutrition, relaxation, and natural
+            healing.
           </p>
+
         </div>
 
-        <div className="mt-14 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6">
-          {PROGRAMS.map((p, i) => (
-            <Reveal key={p.title} delay={(i % 3) * 0.1}>
+        {/* Cards */}
+
+        <div className="mt-20 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+
+          {PROGRAMS.map((program, index) => (
+
+            <Reveal key={program.title} delay={(index % 3) * 0.12}>
+
               <motion.article
-                className="group relative h-[420px] overflow-hidden rounded-3xl"
-                whileHover={{ y: -8 }}
-                transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                whileHover={{
+                  y: -10,
+                }}
+                transition={{
+                  duration: 0.45,
+                }}
+                className="group relative overflow-hidden rounded-[32px]"
               >
-                <img
-                  src={p.image}
-                  alt={p.title}
-                  className="h-full w-full object-cover transition-transform duration-[1.2s] ease-out group-hover:scale-110"
+
+                {/* Image */}
+
+                <motion.img
+                  src={program.image}
+                  alt={program.title}
+                  className="h-[460px] w-full object-cover transition-transform duration-[1800ms] group-hover:scale-110"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent" />
 
-                {/* Hover glass overlay */}
-                <div className="glass-card absolute inset-x-4 bottom-4 rounded-2xl p-5 opacity-0 transition-opacity duration-500 group-hover:opacity-100">
-                  <p className="text-sm font-light leading-relaxed text-white/75">
-                    Discover a personalized approach to {p.title.toLowerCase()}.
-                  </p>
-                  <div className="mt-3 flex items-center gap-2 text-sm font-medium text-sage">
-                    Read More
-                    <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
-                  </div>
-                </div>
+                {/* Overlay */}
 
-                {/* Always-visible label */}
-                <div className="absolute left-5 top-5">
-                  <span className="glass-card rounded-full px-3 py-1 text-xs font-light text-white/80">
-                    {p.tag}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#090909] via-black/20 to-transparent" />
+
+                <div className="absolute inset-0 bg-gradient-to-b from-black/5 to-black/40" />
+
+                {/* Tag */}
+
+                <div className="absolute left-6 top-6">
+
+                  <span className="liquid-glass rounded-full px-4 py-1.5 text-xs tracking-wide text-white/85">
+                    {program.tag}
                   </span>
+
                 </div>
 
-                <h3 className="absolute bottom-5 left-5 text-2xl font-light text-white transition-transform duration-500 group-hover:translate-y-2 group-hover:opacity-0">
-                  {p.title}
-                </h3>
+                {/* Bottom */}
+
+                <div className="absolute inset-x-0 bottom-0 p-6">
+
+                  <h3 className="text-3xl font-light text-white transition-all duration-500 group-hover:-translate-y-6">
+                    {program.title}
+                  </h3>
+
+                  <div className="mt-5 flex items-center justify-between opacity-0 transition-all duration-500 group-hover:opacity-100">
+
+                    <p className="max-w-[220px] text-sm leading-7 text-white/70">
+                      Personalized wellness designed around your body's unique
+                      needs.
+                    </p>
+
+                    <motion.div
+                      whileHover={{ rotate: 45 }}
+                      className="liquid-glass flex h-12 w-12 items-center justify-center rounded-full"
+                    >
+                      <ArrowUpRight
+                        className="h-5 w-5 text-white"
+                        strokeWidth={1.5}
+                      />
+                    </motion.div>
+
+                  </div>
+
+                </div>
+
               </motion.article>
+
             </Reveal>
+
           ))}
+
         </div>
+
       </div>
     </section>
   );

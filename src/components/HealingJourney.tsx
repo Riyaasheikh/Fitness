@@ -1,104 +1,174 @@
-import { motion } from 'framer-motion';
-import { Search, Microscope, Sparkles, TrendingUp } from 'lucide-react';
+import { motion } from "framer-motion";
+import {
+  Search,
+  Microscope,
+  Sparkles,
+  TrendingUp,
+} from "lucide-react";
 
 const STEPS = [
   {
-    num: '01',
-    title: 'Discover',
-    desc: 'Health consultation',
-    detail: 'A deep-dive into your history, lifestyle, and wellness goals.',
+    num: "01",
+    title: "Discover",
+    desc: "Health Consultation",
+    detail:
+      "A comprehensive consultation to understand your health history, lifestyle, and personal wellness goals.",
     icon: Search,
   },
   {
-    num: '02',
-    title: 'Understand',
-    desc: 'Root cause analysis',
-    detail: 'We identify the underlying imbalances, not just the symptoms.',
+    num: "02",
+    title: "Understand",
+    desc: "Root Cause Analysis",
+    detail:
+      "We uncover the underlying imbalances instead of simply treating symptoms.",
     icon: Microscope,
   },
   {
-    num: '03',
-    title: 'Heal',
-    desc: 'Personal wellness program',
-    detail: 'A tailored plan of therapies, nutrition, and mindful movement.',
+    num: "03",
+    title: "Heal",
+    desc: "Personal Wellness Program",
+    detail:
+      "Receive a personalized roadmap combining nutrition, therapies, movement, and recovery.",
     icon: Sparkles,
   },
   {
-    num: '04',
-    title: 'Thrive',
-    desc: 'Long-term lifestyle transformation',
-    detail: 'Sustainable habits that keep you well for years to come.',
+    num: "04",
+    title: "Thrive",
+    desc: "Lifestyle Transformation",
+    detail:
+      "Build sustainable habits that help you maintain long-term vitality and wellbeing.",
     icon: TrendingUp,
   },
 ];
 
 export default function HealingJourney() {
   return (
-    <section className="relative w-full bg-[#080808] px-5 py-24 sm:px-8 sm:py-32 md:px-16 lg:px-20 lg:py-40">
-      <div className="mx-auto max-w-5xl">
+    <section className="relative overflow-hidden px-5 py-24 sm:px-8 sm:py-32 md:px-16 lg:px-20 lg:py-40">
+
+      {/* ---------- Background ---------- */}
+
+      <div className="absolute inset-0">
+
+        <div className="absolute inset-0 bg-gradient-to-b from-[#12182A] via-[#1A2440] to-[#11151F]" />
+
+        <div className="absolute -left-40 top-0 h-[550px] w-[550px] rounded-full bg-blue-400/15 blur-[180px]" />
+
+        <div className="absolute right-[-150px] top-40 h-[500px] w-[500px] rounded-full bg-violet-400/10 blur-[180px]" />
+
+        <div className="absolute bottom-0 left-1/2 h-[400px] w-[400px] -translate-x-1/2 rounded-full bg-cyan-300/10 blur-[180px]" />
+
+        <div className="absolute inset-0 bg-black/25" />
+
+      </div>
+
+      {/* ---------- Content ---------- */}
+
+      <div className="relative z-10 mx-auto max-w-5xl">
+
         <div className="text-center">
-          <span className="text-sm font-light uppercase tracking-[0.25em] text-sage">
+
+          <span className="text-sm font-light uppercase tracking-[0.3em] text-sage">
             The Healing Journey
           </span>
-          <h2 className="mt-5 text-3xl font-light text-white sm:text-4xl md:text-5xl">
-            Four steps to lasting wellness
+
+          <h2 className="mt-6 text-4xl font-light leading-tight text-white sm:text-5xl lg:text-6xl">
+            Four Steps Toward
+            <br />
+            Lifelong Wellness
           </h2>
+
+          <p className="mx-auto mt-6 max-w-2xl text-lg font-light leading-8 text-white/65">
+            Our evidence-informed wellness process helps restore balance,
+            improve vitality, and create sustainable healthy habits.
+          </p>
+
         </div>
 
-        <div className="mt-16 flex flex-col items-center gap-8 lg:mt-24 lg:gap-6">
-          {STEPS.map((step, i) => (
-            <motion.div
-              key={step.num}
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-60px' }}
-              transition={{
-                duration: 0.7,
-                delay: i * 0.12,
-                ease: [0.22, 1, 0.36, 1],
-              }}
-              className="relative w-full max-w-3xl"
-            >
+        {/* ---------- Timeline ---------- */}
+
+        <div className="relative mt-20">
+
+          {/* Vertical Line */}
+
+          <div className="absolute left-7 top-5 hidden h-[calc(100%-40px)] w-px bg-gradient-to-b from-sage/40 via-white/10 to-transparent md:block" />
+
+          <div className="space-y-8">
+
+            {STEPS.map((step, index) => (
+
               <motion.div
-                className="glass-card group relative flex items-center gap-6 rounded-3xl p-6 sm:p-8"
-                whileHover={{ boxShadow: '0 0 40px rgba(168,198,134,0.15)' }}
+                key={step.num}
+                initial={{ opacity: 0, y: 60 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{
+                  duration: 0.7,
+                  delay: index * 0.15,
+                }}
               >
-                <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-white/5">
-                  <step.icon className="h-6 w-6 text-sage" strokeWidth={1.25} />
-                </div>
-                <div className="flex-1">
-                  <div className="flex items-baseline gap-3">
-                    <span className="text-sm font-light text-white/30">
-                      {step.num}
-                    </span>
-                    <h3 className="text-xl font-normal text-white sm:text-2xl">
-                      {step.title}
-                    </h3>
+
+                <motion.div
+                  whileHover={{
+                    y: -8,
+                    scale: 1.02,
+                  }}
+                  transition={{ duration: 0.35 }}
+                  className="liquid-glass relative rounded-3xl p-7 sm:p-8"
+                >
+
+                  <div className="flex flex-col gap-6 sm:flex-row sm:items-start">
+
+                    {/* Icon */}
+
+                    <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-white/5">
+
+                      <step.icon
+                        className="h-7 w-7 text-sage"
+                        strokeWidth={1.5}
+                      />
+
+                    </div>
+
+                    {/* Text */}
+
+                    <div className="flex-1">
+
+                      <div className="flex items-center gap-4">
+
+                        <span className="text-sm tracking-[0.25em] text-white/35">
+                          {step.num}
+                        </span>
+
+                        <h3 className="text-2xl font-light text-white">
+                          {step.title}
+                        </h3>
+
+                      </div>
+
+                      <p className="mt-3 text-sm uppercase tracking-widest text-sage">
+                        {step.desc}
+                      </p>
+
+                      <p className="mt-4 max-w-xl text-base font-light leading-8 text-white/65">
+                        {step.detail}
+                      </p>
+
+                    </div>
+
                   </div>
-                  <p className="mt-1 text-sm font-light text-sage/80">
-                    {step.desc}
-                  </p>
-                  <p className="mt-2 text-sm font-light leading-relaxed text-white/50">
-                    {step.detail}
-                  </p>
-                </div>
+
+                </motion.div>
+
               </motion.div>
-=
-              {i < STEPS.length - 1 && (
-                <div className="flex justify-center py-3 lg:py-1">
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.3 + i * 0.12 }}
-                    className="h-8 w-px bg-gradient-to-b from-sage/40 to-transparent"
-                  />
-                </div>
-              )}
-            </motion.div>
-          ))}
+
+            ))}
+
+          </div>
+
         </div>
+
       </div>
+
     </section>
   );
 }

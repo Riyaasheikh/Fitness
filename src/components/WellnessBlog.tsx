@@ -1,77 +1,141 @@
-import { motion } from 'framer-motion';
-import { ArrowUpRight } from 'lucide-react';
-import Reveal from './Reveal';
-import imag1 from '../assets/mind.avif';
-import image2 from'../assets/nature.avif';
-import image3 from'../assets/movement.avif';
+import { motion } from "framer-motion";
+import { ArrowUpRight } from "lucide-react";
+import Reveal from "./Reveal";
+
+import mindImg from "../assets/mind.avif";
+import nutritionImg from "../assets/nature.avif";
+import movementImg from "../assets/movement.avif";
+
 const POSTS = [
   {
-    category: 'Mindfulness',
-    title: 'The Science of Stillness: How Meditation Reshapes the Brain',
+    category: "Mindfulness",
+    title: "The Science of Stillness: How Meditation Reshapes the Brain",
     excerpt:
-      'New research reveals how just eight minutes of daily meditation can physically rewire the neural pathways that govern stress.',
-    image:imag1
+      "Discover how just a few minutes of daily meditation can improve focus, reduce stress, and strengthen emotional resilience through measurable neurological changes.",
+    image: mindImg,
   },
   {
-    category: 'Nutrition',
-    title: 'Eating With the Seasons: A Guide to Functional Nutrition',
+    category: "Nutrition",
+    title: "Eating with the Seasons: A Guide to Functional Nutrition",
     excerpt:
-      'Aligning your meals with nature\'s rhythms supports digestion, energy, and immunity through every part of the year.',
-    image:image2
+      "Learn how seasonal, nutrient-rich foods naturally support digestion, immunity, and energy throughout every stage of the year.",
+    image: nutritionImg,
   },
   {
-    category: 'Movement',
-    title: 'Morning Yoga: Five Poses to Awaken Your Body Gently',
-    excerpt:image3
+    category: "Movement",
+    title: "Morning Yoga: Five Poses to Awaken Your Body Gently",
+    excerpt:
+      "Start every morning with simple yoga movements that increase flexibility, improve posture, and prepare your body for the day ahead.",
+    image: movementImg,
   },
 ];
 
 export default function WellnessBlog() {
   return (
-    <section className="relative w-full bg-[#0B0B0B] px-5 py-24 sm:px-8 sm:py-32 md:px-16 lg:px-20 lg:py-40">
-      <div className="mx-auto max-w-7xl">
-        <div className="flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-end">
+    <section className="relative overflow-hidden px-5 py-2 sm:px-8 sm:py-2 md:px-5 lg:px-10 lg:py-20">
+      {/* Background */}
+      <div className="absolute inset-0">
+        <div className="absolute inset-0 bg-gradient-to-b from-[#10141E] via-[#1A2440] to-[#121827]" />
+        <div className="absolute -left-40 top-0 h-[600px] w-[600px] rounded-full bg-blue-400/15 blur-[190px]" />
+        <div className="absolute right-[-120px] top-20 h-[500px] w-[500px] rounded-full bg-violet-400/10 blur-[170px]" />
+        <div className="absolute bottom-0 left-1/2 h-[450px] w-[450px] -translate-x-1/2 rounded-full bg-cyan-300/10 blur-[180px]" />
+        <div className="absolute inset-0 bg-black/25" />
+      </div>
+
+      <div className="relative z-10 mx-auto max-w-6xl">
+        {/* Heading */}
+        <div className="flex flex-col items-start justify-between gap-8 lg:flex-row lg:items-end">
           <div>
-            <span className="text-sm font-light uppercase tracking-[0.25em] text-sage">
-              Wellness Journal
-            </span>
-            <h2 className="mt-5 text-3xl font-light text-white sm:text-4xl md:text-5xl">
-              Insights for your journey
-            </h2>
+            <Reveal>
+              <span className="text-sm font-light uppercase tracking-[0.3em] text-sage">
+                Wellness Journal
+              </span>
+            </Reveal>
+
+            <Reveal delay={0.1}>
+              <h2 className="mt-6 max-w-3xl text-4xl font-light leading-tight text-white sm:text-5xl lg:text-6xl">
+                Insights For
+                <br />
+                Your Wellness Journey
+              </h2>
+            </Reveal>
+
+            <Reveal delay={0.2}>
+              <p className="mt-6 max-w-2xl text-lg font-light leading-8 text-white/65">
+                Explore expert articles on holistic health, nutrition,
+                mindfulness, movement, and natural healing to help you live a
+                healthier, more balanced life.
+              </p>
+            </Reveal>
           </div>
         </div>
 
-        <div className="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8">
-          {POSTS.map((p, i) => (
-            <Reveal key={p.title} delay={i * 0.12}>
+        <div className="mt-20 grid items-start gap-8 md:grid-cols-2 xl:grid-cols-3">
+          {POSTS.map((post, index) => (
+            <Reveal key={post.title} delay={index * 0.12}>
               <motion.article
-                className="group cursor-pointer overflow-hidden rounded-3xl bg-white/[0.03]"
-                whileHover={{ y: -6 }}
-                transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                whileHover={{
+                  y: -10,
+                  scale: 1.02,
+                }}
+                transition={{
+                  duration: 0.35,
+                }}
+                className="liquid-glass group relative flex h-fit flex-col overflow-hidden rounded-[30px] border border-white/10 bg-white/[0.04] backdrop-blur-2xl shadow-[0_20px_80px_rgba(0,0,0,0.35)] transition-all duration-500 hover:border-cyan-300/20 hover:bg-white/[0.06]"
               >
-                <div className="relative h-60 overflow-hidden">
+                {/* Image */}
+                <div className="relative h-64 overflow-hidden">
                   <img
-                    src={p.image}
-                    alt={p.title}
-                    className="h-full w-full object-cover transition-transform duration-[1.2s] ease-out group-hover:scale-110"
+                    src={post.image}
+                    alt={post.title}
+                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                  <span className="glass-card absolute left-4 top-4 rounded-full px-3 py-1 text-xs font-light text-white/80">
-                    {p.category}
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#090B12] via-[#090B12]/20 to-transparent" />
+                  <span className="absolute left-5 top-5 rounded-full border border-cyan-300/20 bg-cyan-400/10 px-4 py-2 text-xs font-medium uppercase tracking-[0.15em] text-cyan-200 backdrop-blur-xl">
+                    {post.category}
                   </span>
                 </div>
-                <div className="p-6">
-                  <h3 className="text-lg font-normal leading-snug text-white sm:text-xl">
-                    {p.title}
+
+                {/* Content */}
+                <div className="flex flex-col px-6 pt-6 ">
+                  <h3 className="text-2xl font-light leading-snug text-white transition-colors duration-300 group-hover:text-cyan-200">
+                    {post.title}
                   </h3>
-                  <p className="mt-3 text-sm font-light leading-relaxed text-white/55">
-                    {p.excerpt}
-                  </p>
-                  <div className="mt-5 flex items-center gap-2 text-sm font-medium text-sage">
-                    Read Article
-                    <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
+
+                  {/* Excerpt now reveals on hover instead of always
+                      taking up space, matching the HealingMethods pattern.
+                      Remove this wrapper and go back to a plain <p> if you
+                      actually want the excerpt visible by default. */}
+                  <div className="grid grid-rows-[0fr] transition-all duration-500 group-hover:grid-rows-[1fr]">
+                    <div className="overflow-hidden">
+                      <p className="mt-5 text-[15px] leading-7 text-white/65">
+                        {post.excerpt}
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Footer */}
+                  <div className="mt-6 pt-4">
+                    <div className="h-px bg-gradient-to-r from-cyan-300/40 via-white/10 to-transparent" />
+
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs uppercase tracking-[0.25em] text-cyan-200/80">
+                        Wellness Guide
+                      </span>
+
+                      <div className="flex items-center gap-2 font-medium text-cyan-300 transition-all duration-300 group-hover:gap-3">
+                        Read Article
+                        <ArrowUpRight
+                          size={18}
+                          className="transition-transform duration-300 group-hover:-translate-y-1 group-hover:translate-x-1"
+                        />
+                      </div>
+                    </div>
                   </div>
                 </div>
+
+                {/* Glow */}
+                <div className="absolute -right-20 -top-20 h-44 w-44 rounded-full bg-cyan-300/5 blur-[90px] opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
               </motion.article>
             </Reveal>
           ))}

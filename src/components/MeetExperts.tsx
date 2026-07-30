@@ -1,88 +1,154 @@
-import { motion } from 'framer-motion';
-import { Instagram, Linkedin, Calendar } from 'lucide-react';
-import Reveal from './Reveal';
+import { motion } from "framer-motion";
+import { Instagram, Linkedin, Calendar } from "lucide-react";
+import Reveal from "./Reveal";
+
+import yogaImg from "../assets/yoga.avif";
+import julianImg from "../assets/julein.avif";
+import amaraImg from "../assets/amra.avif";
+import meiImg from "../assets/dr.avif";
 
 const EXPERTS = [
   {
-    name: 'Dr. Amara Okafor',
-    specialty: 'Holistic Physician',
-    image:
-      'https://images.pexels.com/photos/8459997/pexels-photo-8459997.jpeg?auto=compress&cs=tinysrgb&w=900',
+    name: "Dr. Amara Okafor",
+    specialty: "Holistic Physician",
+    image: amaraImg,
   },
   {
-    name: 'Julian Reyes',
-    specialty: 'Clinical Nutritionist',
-    image:
-      'https://images.pexels.com/photos/20002955/pexels-photo-20002955.jpeg?auto=compress&cs=tinysrgb&w=900',
+    name: "Julian Reyes",
+    specialty: "Clinical Nutritionist",
+    image: julianImg,
   },
   {
-    name: 'Mei Lin Chen',
-    specialty: 'Mindfulness Coach',
-    image:
-      'https://images.pexels.com/photos/4101210/pexels-photo-4101210.jpeg?auto=compress&cs=tinysrgb&w=900',
+    name: "Mei Lin Chen",
+    specialty: "Mindfulness Coach",
+    image: meiImg,
   },
   {
-    name: 'Sofia Andersson',
-    specialty: 'Yoga Therapist',
-    image:
-      'https://images.pexels.com/photos/4498516/pexels-photo-4498516.jpeg?auto=compress&cs=tinysrgb&w=900',
+    name: "Sofia Andersson",
+    specialty: "Yoga Therapist",
+    image: yogaImg,
   },
 ];
 
 export default function MeetExperts() {
   return (
-    <section className="relative w-full bg-[#0B0B0B] px-5 py-24 sm:px-8 sm:py-32 md:px-16 lg:px-20 lg:py-40">
-      <div className="mx-auto max-w-7xl">
+    <section className="relative overflow-hidden px-5 py-24 sm:px-8 sm:py-32 md:px-16 lg:px-20 lg:py-40">
+      {/* Background */}
+      <div className="absolute inset-0">
+        {/* Main Gradient */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#10141E] via-[#1A2440] to-[#121827]" />
+
+        {/* Blue Glow */}
+        <div className="absolute -left-40 top-0 h-[600px] w-[600px] rounded-full bg-blue-400/15 blur-[190px]" />
+
+        {/* Purple Glow */}
+        <div className="absolute right-[-120px] top-20 h-[500px] w-[500px] rounded-full bg-violet-400/10 blur-[170px]" />
+
+        {/* Cyan Glow */}
+        <div className="absolute bottom-0 left-1/2 h-[450px] w-[450px] -translate-x-1/2 rounded-full bg-cyan-300/10 blur-[180px]" />
+
+        {/* Overlay */}
+        <div className="absolute inset-0 bg-black/25" />
+      </div>
+
+      <div className="relative z-10 mx-auto max-w-7xl">
+        {/* Heading */}
         <div className="text-center">
-          <span className="text-sm font-light uppercase tracking-[0.25em] text-sage">
-            Meet Our Experts
-          </span>
-          <h2 className="mt-5 text-3xl font-light text-white sm:text-4xl md:text-5xl">
-            Guides who walk the path with you
-          </h2>
+          <Reveal>
+            <span className="text-sm font-light uppercase tracking-[0.3em] text-sage">
+              Meet Our Experts
+            </span>
+          </Reveal>
+
+          <Reveal delay={0.1}>
+            <h2 className="mx-auto mt-6 max-w-4xl text-4xl font-light leading-tight text-white sm:text-5xl lg:text-6xl">
+              Meet Our
+              <br />
+              Healing Experts
+            </h2>
+          </Reveal>
+
+          <Reveal delay={0.2}>
+            <p className="mx-auto mt-6 max-w-2xl text-lg font-light leading-8 text-white/65">
+              Compassionate practitioners combining modern medicine,
+              nutrition, mindfulness, and holistic healing to guide your
+              wellness journey naturally.
+            </p>
+          </Reveal>
         </div>
 
-        <div className="mt-14 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6">
-          {EXPERTS.map((e, i) => (
-            <Reveal key={e.name} delay={(i % 4) * 0.1}>
+        {/* Cards */}
+        <div className="mt-20 grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-4">
+          {EXPERTS.map((expert, index) => (
+            <Reveal key={expert.name} delay={(index % 4) * 0.12}>
               <motion.article
-                className="glass-card group overflow-hidden rounded-3xl"
-                whileHover={{ y: -8 }}
-                transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                animate={{
+                  y: [0, -8, 0],
+                }}
+                transition={{
+                  duration: 5 + index,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+                whileHover={{
+                  y: -10,
+                  scale: 1.03,
+                }}
+                className="liquid-glass group overflow-hidden rounded-[30px] border border-white/10 bg-white/[0.04] backdrop-blur-2xl shadow-[0_20px_80px_rgba(0,0,0,0.35)] transition-all duration-500 hover:border-cyan-300/20 hover:bg-white/[0.06]"
               >
+                {/* Image */}
                 <div className="relative h-[380px] overflow-hidden">
                   <img
-                    src={e.image}
-                    alt={e.name}
-                    className="h-full w-full object-cover transition-transform duration-[1.2s] ease-out group-hover:scale-105"
+                    src={expert.image}
+                    alt={expert.name}
+                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/10 to-transparent" />
+
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#090B12] via-[#090B12]/20 to-transparent" />
                 </div>
-                <div className="p-5">
-                  <h3 className="text-lg font-normal text-white">{e.name}</h3>
-                  <p className="mt-1 text-sm font-light text-sage/80">
-                    {e.specialty}
+
+                {/* Content */}
+                <div className="p-6">
+                  <h3 className="text-xl font-medium text-white">
+                    {expert.name}
+                  </h3>
+
+                  <p className="mt-2 text-sm text-white/65">
+                    {expert.specialty}
                   </p>
 
-                  <div className="mt-4 flex items-center justify-between">
-                    <div className="flex gap-2">
+                  <div className="mt-6 flex items-center justify-between">
+                    {/* Social Icons */}
+                    <div className="flex gap-3">
                       <a
                         href="#"
-                        className="flex h-9 w-9 items-center justify-center rounded-full bg-white/5 text-white/60 transition-colors hover:bg-white/10 hover:text-white"
                         aria-label="Instagram"
+                        className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 text-slate-300 backdrop-blur-xl transition-all duration-300 hover:border-cyan-300/30 hover:bg-cyan-400/10 hover:text-cyan-300"
                       >
-                        <Instagram className="h-4 w-4" strokeWidth={1.5} />
+                        <Instagram
+                          size={18}
+                          strokeWidth={1.6}
+                        />
                       </a>
+
                       <a
                         href="#"
-                        className="flex h-9 w-9 items-center justify-center rounded-full bg-white/5 text-white/60 transition-colors hover:bg-white/10 hover:text-white"
                         aria-label="LinkedIn"
+                        className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 text-slate-300 backdrop-blur-xl transition-all duration-300 hover:border-cyan-300/30 hover:bg-cyan-400/10 hover:text-cyan-300"
                       >
-                        <Linkedin className="h-4 w-4" strokeWidth={1.5} />
+                        <Linkedin
+                          size={18}
+                          strokeWidth={1.6}
+                        />
                       </a>
                     </div>
-                    <button className="flex items-center gap-1.5 rounded-full bg-sage/15 px-3.5 py-2 text-xs font-medium text-sage transition-colors hover:bg-sage/25">
-                      <Calendar className="h-3.5 w-3.5" strokeWidth={1.5} />
+
+                    {/* Button */}
+                    <button className="flex items-center gap-2 rounded-full border border-cyan-300/20 bg-cyan-400/10 px-4 py-2 text-xs font-medium text-cyan-200 backdrop-blur-xl transition-all duration-300 hover:border-cyan-300/40 hover:bg-cyan-400/20 hover:shadow-[0_0_30px_rgba(34,211,238,0.25)]">
+                      <Calendar
+                        size={14}
+                        strokeWidth={1.7}
+                      />
                       Book Session
                     </button>
                   </div>
