@@ -106,7 +106,7 @@ Optimized for
 
 ## 🌐 Live Demo
 
-https://your-live-demo-link.com
+https://fitness-chi-henna.vercel.app/
 
 ---
 
